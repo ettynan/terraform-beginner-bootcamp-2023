@@ -208,6 +208,20 @@ this will run a plan and pass the changeset to be executed by terraform. Apply s
 
 If we want to automatically approve an apply we can provide the auto approce flag eg. `terraform apply --auto-approve`.
 
+##### AWS S3 Naming
+
+We had to update the main.tf to include appropriate naming rules for generating random name for S3 - i.e. letters can only be lowercase.
+```json
+{
+    resource "random_string" "bucket_name" {
+        upper            = false
+        lower            = true
+        length           = 32
+        special          = false
+    }
+}
+```
+
 #### Terraform Destroy
 
 `terraform destroy`
